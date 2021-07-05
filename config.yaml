@@ -1,0 +1,9 @@
+inputs:
+  test:
+    transport:
+      type: http
+      listen: 80
+      #auth:
+        #basic:
+          #login: john
+          #password: doe
