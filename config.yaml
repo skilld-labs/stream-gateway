@@ -1,9 +1,31 @@
-inputs:
+nodes:
   test:
     transport:
-      type: http
+      typ: http
       listen: 80
-      #auth:
-        #basic:
-          #login: john
-          #password: doe
+    pins:
+      - id: "some/id"
+        codec:
+          json:
+            depth: 2
+            keyValue: false
+      #- id: "other/id"
+        #codec:
+          #csv:
+            #header: false
+            #delimiter: ","
+  test2:
+    transport:
+      typ: nats
+      uri: nats://azeaze:4222
+    pins:
+      - id: "some.other.id"
+        codec:
+          json:
+            depth: 3
+            keyValue: false
+connections:
+  conn1:
+    input: "some/id" #Pin
+    output: "other/id"
+

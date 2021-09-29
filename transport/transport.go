@@ -1,5 +1,7 @@
 package transport
 
-type Transport interface {
-	ListenAndServe() error
+type Transport struct {
+	Typ    string `yaml:"typ"`
+	Listen int    `yaml:"listen"`
+	Uri    string `yaml:uri`
 }

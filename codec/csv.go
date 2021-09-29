@@ -1,8 +1,8 @@
 package codec
 
 type CSVCodec struct {
-	Header    bool
-	Delimiter string
+	Header    bool   `yaml:"header"`
+	Delimiter string `yaml:"delimiter"`
 }
 
 func (c *CSVCodec) Encode() ([]byte, error) {
@@ -11,4 +11,11 @@ func (c *CSVCodec) Encode() ([]byte, error) {
 
 func (c *CSVCodec) Decode() (map[string]interface{}, error) {
 	return nil, nil
+}
+
+func NewCSVCodec(c map[string]interface{}) *CSVCodec {
+	return &CSVCodec{
+		Header:    c["header"].(bool),
+		Delimiter: c["delimiter"].(string),
+	}
 }

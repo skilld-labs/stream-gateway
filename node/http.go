@@ -1,28 +1,25 @@
 package node
 
 import (
-	"../configuration"
-	"../log"
+	"../pin"
 	"../transport"
-	"github.com/davecgh/go-spew/spew"
 )
 
 type HTTPNode struct {
 	Name      string
 	Transport transport.Transport
+	Pins      []pin.Pin
 }
 
-type HTTPNodeConfig struct {
-	Logger log.Logger
-	Config configuration.Provider
-	Port   int
+func NewHTTPNode(cfg NodeConfig) *HTTPNode {
+	//here handle Transport. Client if URI is defined, Server if Listen is defined
+	return &HTTPNode{Name: cfg.Name}
 }
 
-func NewHTTPNode(cfg HTTPNodeConfig) (HTTPNode, error) {
-	return HTTPNode{}, nil
+func (n *HTTPNode) AddPin(p pin.Pin) {
+	n.Pins = append(n.Pins, p)
 }
 
-func (n *HTTPNode) AddPin(r Route) error {
-	spew.Dump("ntm")
-	return nil
+func (n *HTTPNode) AddTransport(t transport.Transport) {
+	n.Transport = t
 }

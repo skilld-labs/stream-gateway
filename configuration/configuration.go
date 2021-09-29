@@ -1,6 +1,7 @@
 package configuration
 
 import (
+	"github.com/knadh/koanf"
 	"github.com/skilld-labs/http-event-adapter/log"
 )
 
@@ -23,7 +24,9 @@ type Provider interface {
 	GetMapStringString(string) map[string]string
 	GetMapStringStrings(string) map[string][]string
 	GetMapStringBool(string) map[string]bool
+	GetKeys() []string
 	GetBytes(string) []byte
+	GetSlices(string) []*koanf.Koanf
 	Load(string, interface{})
 	Set(string, interface{})
 }

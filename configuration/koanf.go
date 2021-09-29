@@ -89,6 +89,22 @@ func (p *provider) GetMapStringBool(key string) map[string]bool {
 	return v
 }
 
+func (p *provider) GetSlices(key string) []*koanf.Koanf {
+	v := p.Slices(key)
+	if len(v) == 0 {
+		p.logger.Debug("%s not found", key)
+	}
+	return v
+}
+
+func (p *provider) GetKeys() []string {
+	v := p.Keys()
+	if len(v) == 0 {
+		p.logger.Debug("error getting MapKeys")
+	}
+	return v
+}
+
 func (p *provider) GetBytes(key string) []byte {
 	v := p.Bytes(key)
 	if len(v) == 0 {
